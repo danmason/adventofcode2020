@@ -1,7 +1,9 @@
 (ns day1
   (:require [util :as util]))
 
-(defn task1 [input]
+(def input (map #(Long/parseLong %) (util/get-day-input 1)))
+
+(defn task1 []
   (loop [xs input]
     (when-let [x (first xs)]
       (if-let [product (some (fn [y]
@@ -11,7 +13,7 @@
         product
         (recur (rest xs))))))
 
-(defn task2 [input]
+(defn task2 []
   (loop [xs input]
     (when-let [x (first xs)]
       (if-let [product (loop [ys (rest xs)]
@@ -26,6 +28,5 @@
         (recur (rest xs))))))
 
 (defn -main []
-  (let [input (map #(Long/parseLong %) (util/get-day-input 1))]
-    (prn (task1 input))
-    (prn (task2 input))))
+  (prn (task1))
+  (prn (task2)))
